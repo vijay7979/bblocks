@@ -2,13 +2,15 @@
   "name": "bblocks",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha test.js",
+    "start: node bin/www"
   },
   "author": "vj",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "express": "^4.13.3"
   },
   "devDependencies": {
