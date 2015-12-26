@@ -6,7 +6,7 @@ var urlencode = bodyParser.urlencoded({extended:false});
 
 var redis = require('redis');
 var	client = redis.createClient();
-client.select((process.env.NODE_ENV || 'development').length);
+//client.select((process.env.NODE_ENV || 'development').length);
 
 
 // client.hset('cities', 'Lotopia', 'City of Doom');
