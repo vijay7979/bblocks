@@ -57,15 +57,22 @@ describe('Creating new cities', function() {
 	it('Returns a 201 status code', function(done) {
 		request(app)
 			.post('/cities')
-			.send('name=Springfield&descrption=where+the+simpsons+live')
+			.send('name=Springfield&description=where+the+simpsons+live')
 			.expect(201, done);
 	});
 
 	it('Return the city name', function(done) {
 		request(app)
 			.post('/cities')
-			.send('name=Springfield&descrption=where+the+simpsons+live')
+			.send('name=Springfield&description=where+the+simpsons+live')
 			.expect(/Springfield/i, done);
+	});
+
+	it('Validates name and description of city', function(done) {
+		request(app)
+			.post('/cities')
+			.send('name=&description=')
+			.expect(400, done);	//400 being a bad request
 	});
 });
 

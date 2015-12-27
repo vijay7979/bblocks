@@ -6,6 +6,7 @@ var urlencode = bodyParser.urlencoded({extended:false});
 
 var redis = require('redis');
 var	client = redis.createClient();
+//client.flushdb();
 //client.select((process.env.NODE_ENV || 'development').length);
 
 
@@ -39,6 +40,10 @@ app.get('/cities', function(request, response) {
 //creating new cities
 app.post('/cities', urlencode, function(request, response) {
 	var newCity = request.body;
+	if(!newCity.name || !newCity.description) {
+		response.sendStatus(400);
+		return false;
+	}
 	client.hset('cities', newCity.name, newCity.description, function(error) {
 		if (error) throw error;
 		response.status(201).json(newCity.name);
