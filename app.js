@@ -47,6 +47,13 @@ app.post('/cities', urlencode, function(request, response) {
 
 	// cities[newCity.name] = newCity.description;	
 
+app.delete('/cities/:name', function(request, response) {
+	client.hdel('cities', request.params.name, function(error) {
+		if (error) throw error;
+		response.sendStatus(204);
+	})
+});
+
 // app.listen(3000, function() {
 // 	console.log('Listening on port 3000');
 // });

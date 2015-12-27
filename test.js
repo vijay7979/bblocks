@@ -66,7 +66,25 @@ describe('Creating new cities', function() {
 			.post('/cities')
 			.send('name=Springfield&descrption=where+the+simpsons+live')
 			.expect(/Springfield/i, done);
-	})
+	});
+});
+
+//deleting cities
+describe('Deleting cities', function() {
+
+	before(function() {
+		client.hset('cities', 'Bananatown', 'the main dock for agricultural produce exports');
+	});
+
+	after(function() {
+		client.flushdb();
+	});
+
+	it('Returns a 204 status code', function(done) {	//204 being succcessful but with no content
+		request(app)
+			.delete('/cities/Bananatown')
+			.expect(204, done);
+	});
 });
 
 
